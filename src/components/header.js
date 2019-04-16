@@ -1,34 +1,112 @@
-import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import Elefante from "../components/elefante"
+import styled from "styled-components"
+import { Link } from "gatsby"
+
+const HeaderStyled = styled.header`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 120px auto;
+  grid-template-rows: 100px;
+  align-items: center;
+
+  @media only screen and (min-width: 600px) {
+    grid-template-rows: 120px;
+    grid-template-columns: 150px auto;
+  }
+
+  @media only screen and (min-width: 768px) {
+    grid-template-rows: 100px auto;
+    grid-template-columns: 100%;
+    align-items: start;
+    margin: 25px 25px;
+  }
+
+  @media only screen and (min-width: 992px) {
+    grid-template-rows: 120px auto;
+    margin: 40px 40px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    grid-template-rows: 175px auto;
+    margin: 50px 50px;
+  }
+`
+
+const LogoWrapper = styled.div`
+  width: 80px;
+  justify-self: center;
+
+  @media only screen and (min-width: 600px) {
+    width: 100px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    justify-self: start;
+    width: 120px;
+  }
+
+  @media only screen and (min-width: 992px) {
+    width: 150px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 175px;
+  }
+`
+
+const LinksWrapper = styled.div`
+  justify-self: end;
+  display: flex;
+  margin-right: 10px;
+
+  @media only screen and (min-width: 600px) {
+    margin-right: 30px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    justify-self: start;
+    flex-flow: column nowrap;
+    margin-top: 30px;
+  }
+
+  @media only screen and (min-width: 992px) {
+    margin-top: 50px;
+  }
+`
+
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+  :hover {
+    color: rgb(246, 153, 63);
+  }
+  transition: color 0.5s;
+  font-size: 1.1em;
+  margin-right: 10px;
+  @media only screen and (min-width: 600px) {
+    padding-top: 8px;
+    font-size: 1.2em;
+  }
+  @media only screen and (min-width: 992px) {
+    padding-top: 15px;
+    font-size: 1.5em;
+  }
+`
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
+  <HeaderStyled>
+    <LogoWrapper>
+      <Link to="/">
+        <Elefante />
+      </Link>
+    </LogoWrapper>
+    <LinksWrapper>
+      <LinkStyled to="/">Aprender</LinkStyled>
+      <LinkStyled to="/">Galeria</LinkStyled>
+      <LinkStyled to="/">Acerca</LinkStyled>
+    </LinksWrapper>
+  </HeaderStyled>
 )
 
 Header.propTypes = {
