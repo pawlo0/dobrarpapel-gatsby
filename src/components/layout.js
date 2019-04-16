@@ -3,31 +3,34 @@ import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Header from "./header"
+import Footer from "./footer"
 
 const LayoutStyle = styled.div`
-  display: flex;
-  flex-flow: row wrap;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 80px 300px auto;
+  grid-auto-flow: row;
 
-  /* Small devices (portrait tablets and large phones, 600px and up) */
   @media only screen and (min-width: 600px) {
-    ...;
+    grid-template-rows: 100px 300px auto;
   }
 
-  /* Medium devices (landscape tablets, 768px and up) */
   @media only screen and (min-width: 768px) {
-    ...;
+    grid-template-columns: 25% auto;
+    grid-template-rows: 1fr auto;
   }
 
-  /* Large devices (laptops/desktops, 992px and up) */
   @media only screen and (min-width: 992px) {
     ...;
   }
 
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
   @media only screen and (min-width: 1200px) {
-    flex-flow: column nowrap;
-    height: 100%;
   }
+`
+const Content = styled.div`
+  grid-row-start: span 3;
+  border: 1px solid black;
 `
 
 const Layout = ({ children }) => (
@@ -44,6 +47,8 @@ const Layout = ({ children }) => (
     render={data => (
       <LayoutStyle>
         <Header siteTitle={data.site.siteMetadata.title} />
+        <Content>{children}</Content>
+        <Footer />
       </LayoutStyle>
     )}
   />
