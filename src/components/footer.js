@@ -2,7 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import { FaFacebookF } from "react-icons/fa"
 
-const Footer = styled.div`
+const Footer = styled.footer`
+  align-self: end;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 40px 40px;
@@ -13,6 +14,8 @@ const Footer = styled.div`
   @media only screen and (min-width: 768px) {
     justify-items: start;
     margin-left: 25px;
+    position: fixed;
+    bottom: 0px;
   }
 
   @media only screen and (min-width: 992px) {

@@ -1,43 +1,82 @@
 import React from "react"
-import styled, { createGlobalStyle } from "styled-components"
+import styled from "styled-components"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-
-const GlobalStyle = createGlobalStyle`
-  html, body, #___gatsby, #___gatsby>div {
-    height: 100%;
-  }
-`
+import Img from "gatsby-image"
 
 const IndexContentWrapper = styled.div`
   display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(6, 300px);
 
   @media only screen and (min-width: 600px) {
-    grid-template-columns: 100%;
+    grid-template-rows: repeat(6, 400px);
   }
 
   @media only screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(3, 70vh);
   }
 
   @media only screen and (min-width: 992px) {
   }
 
   @media only screen and (min-width: 1200px) {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 70vh);
   }
 `
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <Layout>
-    <GlobalStyle />
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <IndexContentWrapper>
-      <h1>This is content</h1>
-      <h1>This is content</h1>
-      <h1>This is content</h1>
+      <Img fluid={data.yakai.childImageSharp.fluid} alt="" />
+      <Img fluid={data.ecosa.childImageSharp.fluid} alt="" />
+      <Img fluid={data.papel.childImageSharp.fluid} alt="" />
+      <Img fluid={data.flores.childImageSharp.fluid} alt="" />
+      <Img fluid={data.polvo.childImageSharp.fluid} alt="" />
+      <Img fluid={data.rosas.childImageSharp.fluid} alt="" />
     </IndexContentWrapper>
   </Layout>
 )
 
 export default IndexPage
+
+export const indexImage = graphql`
+  fragment indexImage on File {
+    childImageSharp {
+      fluid(maxWidth: 600) {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+`
+
+export const query = graphql`
+  query {
+    yakai: file(relativePath: { eq: "yakai.jpg" }) {
+      ...indexImage
+    }
+
+    ecosa: file(relativePath: { eq: "ecosa.jpg" }) {
+      ...indexImage
+    }
+
+    papel: file(relativePath: { eq: "papel.jpg" }) {
+      ...indexImage
+    }
+
+    polvo: file(relativePath: { eq: "polvo.jpg" }) {
+      ...indexImage
+    }
+
+    flores: file(relativePath: { eq: "flores.jpg" }) {
+      ...indexImage
+    }
+
+    rosas: file(relativePath: { eq: "rosas.jpg" }) {
+      ...indexImage
+    }
+  }
+`

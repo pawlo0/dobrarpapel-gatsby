@@ -6,19 +6,24 @@ import Header from "./header"
 import Footer from "./footer"
 
 const LayoutStyle = styled.div`
-  min-height: 100%;
   display: grid;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
   grid-template-columns: 100%;
-  grid-template-rows: 80px 300px auto;
-  grid-auto-flow: row;
+  grid-template-rows: 80px auto;
 
   @media only screen and (min-width: 600px) {
-    grid-template-rows: 100px 300px auto;
+    grid-template-rows: 100px auto;
   }
 
   @media only screen and (min-width: 768px) {
+    grid-template-areas:
+      "header content"
+      "footer content";
     grid-template-columns: 25% auto;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 70vh 30vh;
   }
 
   @media only screen and (min-width: 992px) {
@@ -28,9 +33,17 @@ const LayoutStyle = styled.div`
   @media only screen and (min-width: 1200px) {
   }
 `
+
 const Content = styled.div`
-  grid-row-start: span 3;
-  border: 1px solid black;
+  grid-area: content;
+`
+
+const HeaderStyled = styled(Header)`
+  grid-area: header;
+`
+
+const FooterStyled = styled(Footer)`
+  grid-area: footer;
 `
 
 const Layout = ({ children }) => (
@@ -46,9 +59,9 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <LayoutStyle>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <HeaderStyled siteTitle={data.site.siteMetadata.title} />
         <Content>{children}</Content>
-        <Footer />
+        <FooterStyled />
       </LayoutStyle>
     )}
   />
