@@ -3,19 +3,20 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
+import GridItem from "../components/imageLink"
 
 const IndexContentWrapper = styled.div`
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: repeat(6, 300px);
+  grid-auto-rows: 300px;
 
   @media only screen and (min-width: 600px) {
-    grid-template-rows: repeat(6, 400px);
+    grid-auto-rows: 400px;
   }
 
   @media only screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 50%);
-    grid-template-rows: repeat(3, 70vh);
+    grid-auto-rows: 70vh;
   }
 
   @media only screen and (min-width: 992px) {
@@ -23,7 +24,6 @@ const IndexContentWrapper = styled.div`
 
   @media only screen and (min-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 70vh);
   }
 `
 
@@ -31,12 +31,12 @@ const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <IndexContentWrapper>
+      <GridItem image="papel.jpg" />
+      <GridItem image="rosas.jpg" columns="2" />
       <Img fluid={data.yakai.childImageSharp.fluid} alt="" />
-      <Img fluid={data.ecosa.childImageSharp.fluid} alt="" />
-      <Img fluid={data.papel.childImageSharp.fluid} alt="" />
       <Img fluid={data.flores.childImageSharp.fluid} alt="" />
       <Img fluid={data.polvo.childImageSharp.fluid} alt="" />
-      <Img fluid={data.rosas.childImageSharp.fluid} alt="" />
+      <Img fluid={data.ecosa.childImageSharp.fluid} alt="" />
     </IndexContentWrapper>
   </Layout>
 )
