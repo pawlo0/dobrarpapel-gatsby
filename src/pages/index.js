@@ -39,7 +39,7 @@ const IndexPage = ({ data }) => (
           key={node.id}
           image={node.frontmatter.image}
           title={node.frontmatter.title}
-          link="/"
+          link={node.fields.slug}
         />
       ))}
       <Img fluid={data.yakai.childImageSharp.fluid} alt="" />
@@ -87,13 +87,16 @@ export const query = graphql`
     rosas: file(relativePath: { eq: "rosas.jpg" }) {
       ...indexImage
     }
-    allMarkdownRemark {
+    allMarkdownRemark(sort: { order: DESC, fields: [fileAbsolutePath] }) {
       edges {
         node {
           id
           frontmatter {
             title
             image
+          }
+          fields {
+            slug
           }
         }
       }

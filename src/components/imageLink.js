@@ -35,7 +35,10 @@ const MyImg = function(props) {
       query={graphql`
         query {
           images: allFile(
-            filter: { extension: { regex: "/jpeg|jpg|png|gif/" } }
+            filter: {
+              sourceInstanceName: { eq: "images" }
+              extension: { regex: "/jpeg|jpg|png|gif/" }
+            }
           ) {
             edges {
               node {
