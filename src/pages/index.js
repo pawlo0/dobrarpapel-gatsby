@@ -34,6 +34,14 @@ const IndexPage = ({ data }) => (
     <IndexContentWrapper>
       <GridItem image="papel.jpg" title="Aprender" link="/aprender" />
       <GridItem image="rosas.jpg" columns="2" title="Acerca" link="/acerca" />
+      {data.allMarkdownRemark.edges.map(({ node }) => (
+        <GridItem
+          key={node.id}
+          image={node.frontmatter.image}
+          title={node.frontmatter.title}
+          link="/"
+        />
+      ))}
       <Img fluid={data.yakai.childImageSharp.fluid} alt="" />
       <Img fluid={data.flores.childImageSharp.fluid} alt="" />
       <Img fluid={data.polvo.childImageSharp.fluid} alt="" />
@@ -78,6 +86,17 @@ export const query = graphql`
 
     rosas: file(relativePath: { eq: "rosas.jpg" }) {
       ...indexImage
+    }
+    allMarkdownRemark {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            image
+          }
+        }
+      }
     }
   }
 `
