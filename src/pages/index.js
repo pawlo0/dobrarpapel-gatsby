@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
@@ -31,8 +32,8 @@ const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <IndexContentWrapper>
-      <GridItem image="papel.jpg" />
-      <GridItem image="rosas.jpg" columns="2" />
+      <GridItem image="papel.jpg" title="Aprender" link="/aprender" />
+      <GridItem image="rosas.jpg" columns="2" title="Acerca" link="/acerca" />
       <Img fluid={data.yakai.childImageSharp.fluid} alt="" />
       <Img fluid={data.flores.childImageSharp.fluid} alt="" />
       <Img fluid={data.polvo.childImageSharp.fluid} alt="" />

@@ -7,13 +7,22 @@ import Img from "gatsby-image"
 
 const Item = styled(Link)`
   overflow: hidden;
-  grid-column-start: span ${props => props.columns};
+  position: relative;
+  @media only screen and (min-width: 1200px) {
+    grid-column-start: span ${props => props.columns};
+  }
   div {
     height: 100%;
     transition: transform 0.3s ease-out;
+    position: absolute;
   }
-  div:hover {
+  &:hover div {
     transform: scale(1.1);
+  }
+
+  &:hover h2 {
+    opacity: 1;
+    top: 20px;
   }
 `
 function renderImage(file) {
@@ -51,9 +60,25 @@ const MyImg = function(props) {
   )
 }
 
+const Title = styled.h2`
+  position: absolute;
+  z-index: 10;
+  right: 20px;
+  top: 20px;
+  text-align: right;
+  color: white;
+  opacity: 1;
+  @media only screen and (min-width: 1200px) {
+    opacity: 0;
+    top: 100px;
+    transition: all 0.4s ease-out;
+  }
+`
+
 const GridItem = props => (
-  <Item columns={props.columns * 1}>
+  <Item columns={props.columns * 1} to={props.link}>
     <MyImg src={props.image} alt="" />
+    <Title>{props.title}</Title>
   </Item>
 )
 
@@ -66,4 +91,6 @@ GridItem.defaultProps = {
 GridItem.propTypes = {
   image: PropTypes.string.isRequired,
   columns: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
 }
