@@ -26,7 +26,6 @@ const Item = styled(Link)`
   }
 `
 function renderImage(file) {
-  console.log(file)
   return <Img fluid={file.node.childImageSharp.fluid} />
 }
 const MyImg = function(props) {
@@ -88,7 +87,7 @@ const GridItem = props => (
 export default GridItem
 
 GridItem.defaultProps = {
-  columns: 1,
+  columns: "1",
 }
 
 GridItem.propTypes = {

@@ -2,8 +2,8 @@ import PropTypes from "prop-types"
 import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
-import { StaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import Logo from "./logo"
+import Logo2 from "./logo2"
 
 const HeaderStyled = styled.header`
   display: grid;
@@ -20,20 +20,21 @@ const HeaderStyled = styled.header`
     grid-template-columns: 100%;
     align-items: start;
     align-content: start;
-    margin: 25px 25px;
+    padding: 50px 25px;
     position: fixed;
+    top: 0px;
+    width: 25%;
+    height: 70vh;
   }
 
   @media only screen and (min-width: 992px) {
     grid-template-rows: 100px auto;
-    margin: 40px 40px;
-    top: 40px;
+    padding: 80px 40px;
   }
 
   @media only screen and (min-width: 1200px) {
     grid-template-rows: 110px auto;
-    margin: 50px 50px;
-    top: 50px;
+    padding: 90px 50px;
   }
 `
 
@@ -97,29 +98,10 @@ const LinkStyled = styled(Link)`
   }
 `
 
-const Logo = () => (
-  <StaticQuery
-    query={graphql`
-      query {
-        placeholderImage: file(relativePath: { eq: "elefante.png" }) {
-          childImageSharp {
-            fluid(maxWidth: 300) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-    `}
-    render={data => <Img fluid={data.placeholderImage.childImageSharp.fluid} />}
-  />
-)
-
-const Header = ({ data }) => (
+const Header = ({ data, layoutOption }) => (
   <HeaderStyled>
     <LogoWrapper>
-      <Link to="/">
-        <Logo />
-      </Link>
+      <Link to="/">{layoutOption === "post" ? <Logo2 /> : <Logo />}</Link>
     </LogoWrapper>
     <LinksWrapper>
       <LinkStyled to="/">Aprender</LinkStyled>

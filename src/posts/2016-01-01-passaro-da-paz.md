@@ -1,6 +1,7 @@
 ---
 title: Pássaro da Paz (Senbazuru)
 image: crane2.jpg
+columns: 2
 category: Aves
 ---
 

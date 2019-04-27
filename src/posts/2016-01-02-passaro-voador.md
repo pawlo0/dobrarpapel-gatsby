@@ -1,6 +1,7 @@
 ---
 title: Pássaro voador (Flapping bird)
 image: flapping_bird2.jpg
+columns: 1
 category: Aves
 ---
 

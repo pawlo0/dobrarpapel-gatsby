@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Img from "gatsby-image"
 import GridItem from "../components/imageLink"
 
 const IndexContentWrapper = styled.div`
@@ -39,13 +38,10 @@ const IndexPage = ({ data }) => (
           key={node.id}
           image={node.frontmatter.image}
           title={node.frontmatter.title}
+          columns={node.frontmatter.columns}
           link={node.fields.slug}
         />
       ))}
-      <Img fluid={data.yakai.childImageSharp.fluid} alt="" />
-      <Img fluid={data.flores.childImageSharp.fluid} alt="" />
-      <Img fluid={data.polvo.childImageSharp.fluid} alt="" />
-      <Img fluid={data.ecosa.childImageSharp.fluid} alt="" />
     </IndexContentWrapper>
   </Layout>
 )
@@ -64,29 +60,6 @@ export const indexImage = graphql`
 
 export const query = graphql`
   query {
-    yakai: file(relativePath: { eq: "yakai.jpg" }) {
-      ...indexImage
-    }
-
-    ecosa: file(relativePath: { eq: "ecosa.jpg" }) {
-      ...indexImage
-    }
-
-    papel: file(relativePath: { eq: "papel.jpg" }) {
-      ...indexImage
-    }
-
-    polvo: file(relativePath: { eq: "polvo.jpg" }) {
-      ...indexImage
-    }
-
-    flores: file(relativePath: { eq: "flores.jpg" }) {
-      ...indexImage
-    }
-
-    rosas: file(relativePath: { eq: "rosas.jpg" }) {
-      ...indexImage
-    }
     allMarkdownRemark(sort: { order: DESC, fields: [fileAbsolutePath] }) {
       edges {
         node {
@@ -94,6 +67,7 @@ export const query = graphql`
           frontmatter {
             title
             image
+            columns
           }
           fields {
             slug

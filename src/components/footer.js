@@ -9,21 +9,24 @@ const Footer = styled.footer`
   grid-template-rows: 40px 40px;
   justify-items: center;
   align-items: center;
-  margin-top: 10px;
+  padding-top: 10px;
 
   @media only screen and (min-width: 768px) {
     justify-items: start;
-    margin-left: 25px;
+    padding-left: 25px;
+    padding-top: 15vh;
     position: fixed;
     bottom: 0px;
+    height: 30vh;
+    width: 25%;
   }
 
   @media only screen and (min-width: 992px) {
-    margin-left: 40px;
+    padding-left: 40px;
   }
 
   @media only screen and (min-width: 1200px) {
-    margin-left: 50px;
+    padding-left: 50px;
   }
 `
 

@@ -36,7 +36,7 @@ const Title = styled.h1`
 export default ({ data }) => {
   const post = data.markdownRemark
   return (
-    <Layout>
+    <Layout layoutOption="post">
       <Post>
         <Title>{post.frontmatter.title}</Title>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />

@@ -24,10 +24,17 @@ const LayoutStyle = styled.div`
       "footer content";
     grid-template-columns: 25% auto;
     grid-template-rows: 70vh 30vh;
+    header {
+      background: ${props => (props.layoutOption === "post" ? "#000" : "#fff")};
+      color: ${props => (props.layoutOption === "post" ? "#fff" : "#000")};
+    }
+    footer {
+      background: ${props => (props.layoutOption === "post" ? "#000" : "#fff")};
+      color: ${props => (props.layoutOption === "post" ? "#fff" : "#000")};
+    }
   }
 
   @media only screen and (min-width: 992px) {
-    ...;
   }
 
   @media only screen and (min-width: 1200px) {
@@ -46,7 +53,7 @@ const FooterStyled = styled(Footer)`
   grid-area: footer;
 `
 
-const Layout = ({ children }) => (
+const Layout = ({ layoutOption, children }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -58,8 +65,11 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <LayoutStyle>
-        <HeaderStyled siteTitle={data.site.siteMetadata.title} />
+      <LayoutStyle layoutOption={layoutOption}>
+        <HeaderStyled
+          siteTitle={data.site.siteMetadata.title}
+          layoutOption={layoutOption}
+        />
         <Content>{children}</Content>
         <FooterStyled />
       </LayoutStyle>
@@ -69,6 +79,11 @@ const Layout = ({ children }) => (
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  layoutOption: PropTypes.string.isRequired,
+}
+
+Layout.defaultProps = {
+  layoutOption: "main",
 }
 
 export default Layout
