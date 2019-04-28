@@ -60,7 +60,10 @@ export const indexImage = graphql`
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { order: DESC, fields: [fileAbsolutePath] }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { category: { ne: "Aprender" } } }
+      sort: { order: DESC, fields: [fileAbsolutePath] }
+    ) {
       edges {
         node {
           id
